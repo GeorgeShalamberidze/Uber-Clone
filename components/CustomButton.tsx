@@ -16,7 +16,7 @@ const CustomButton: React.FC<ButtonProps> = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      className={`w-full rounded-full flex justify-center items-center shadow-md shadow-natural-400/70 ${getBgVariantStyle(bgVariant)} ${className}`}
+      className={`w-full rounded-full flex flex-row p-3 justify-center items-center shadow-md shadow-natural-400/70 ${getBgVariantStyle(bgVariant)} ${className}`}
       {...props}
     >
       {IconLeft && <IconLeft />}
