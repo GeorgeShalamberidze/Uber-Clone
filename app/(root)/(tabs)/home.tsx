@@ -184,6 +184,10 @@ const Page: React.FC = () => {
               <View className="flex flex-row items-center h-[300px] bg-transparent">
                 <Map />
               </View>
+
+              <Text className="text-xl font-JakartaBold mt-5 mb-3">
+                Recent Rides
+              </Text>
             </>
           </>
         )}

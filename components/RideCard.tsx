@@ -10,14 +10,9 @@ const RideCard: React.FC<{ rides: Ride }> = ({ rides }) => {
     destination_latitude,
     destination_longitude,
     driver,
-    driver_id,
-    fare_price,
     origin_address,
-    origin_latitude,
-    origin_longitude,
     payment_status,
     ride_time,
-    user_email,
   } = rides;
 
   return (
