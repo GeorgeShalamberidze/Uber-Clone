@@ -1,12 +1,12 @@
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const History: React.FC = () => {
+const Rides: React.FC = () => {
   return (
     <SafeAreaView>
-      <Text>History</Text>
+      <Text>Rides</Text>
     </SafeAreaView>
   );
 };
 
-export default History;
+export default Rides;

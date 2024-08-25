@@ -68,7 +68,7 @@ const SignIn: React.FC = () => {
             }
           />
           <CustomButton
-            title="Sign Up"
+            title="Sign In"
             onPress={onSignInPress}
             className="mt-6 py-4"
           />
