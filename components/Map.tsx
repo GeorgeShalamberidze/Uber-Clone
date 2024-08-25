@@ -86,8 +86,6 @@ const Map: React.FC = () => {
     }
   }, [drivers]);
 
-  console.log(markers, drivers);
-
   return (
     <MapView
       provider={PROVIDER_DEFAULT}
