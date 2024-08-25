@@ -5,13 +5,13 @@ import { icons, images } from "@/constants";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, router } from "expo-router";
 import { useState } from "react";
-import { Image, ScrollView, Text, View } from "react-native";
+import { Alert, Image, ScrollView, Text, View } from "react-native";
 import { ReactNativeModal } from "react-native-modal";
 
 const SignUp: React.FC = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
   const [verification, setVerification] = useState({
-    state: "pending",
+    state: "default",
     error: "",
     code: "",
   });
@@ -21,6 +21,8 @@ const SignUp: React.FC = () => {
     email: "",
     password: "",
   });
+
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
 
   const onSignUpPress = async () => {
     if (!isLoaded) {
@@ -38,6 +40,7 @@ const SignUp: React.FC = () => {
       setVerification({ ...verification, state: "pending" });
     } catch (err: any) {
       console.error(JSON.stringify(err, null, 2));
+      Alert.alert("Error", err.errors[0].longMessage);
     }
   };
 
@@ -103,6 +106,7 @@ const SignUp: React.FC = () => {
             title="Sign up"
             onPress={onSignUpPress}
             className="mt-6 py-4"
+            textVariant="default"
           />
 
           <OAuth />
@@ -118,9 +122,9 @@ const SignUp: React.FC = () => {
 
         <ReactNativeModal
           isVisible={verification.state === "pending"}
-          onModalHide={() =>
-            setVerification({ ...verification, state: "success" })
-          }
+          onModalHide={() => {
+            if (verification.state === "success") setShowSuccessModal(true);
+          }}
         >
           <View className="bg-white px-7 py-9 rounded-2xl min-h-[300px]">
             <Text className="text-2xl font-JakartaExtraBold mb-2">
@@ -153,7 +157,7 @@ const SignUp: React.FC = () => {
           </View>
         </ReactNativeModal>
 
-        <ReactNativeModal isVisible={verification.state === "success"}>
+        <ReactNativeModal isVisible={showSuccessModal}>
           <View className="bg-white px-7 py-9 rounded-2xl min-h-[300px]">
             <Image
               source={images.check}
@@ -168,7 +172,10 @@ const SignUp: React.FC = () => {
             <CustomButton
               className="mt-5"
               title="Browse Home"
-              onPress={() => router.replace("/(root)/(tabs)/home")}
+              onPress={() => {
+                setShowSuccessModal(false);
+                router.push("/(root)/(tabs)/home");
+              }}
             />
           </View>
         </ReactNativeModal>
