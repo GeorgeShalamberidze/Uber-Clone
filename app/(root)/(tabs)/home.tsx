@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Location from "expo-location";
+import { router } from "expo-router";
 
 const recentRides = [
   {
@@ -137,16 +138,15 @@ const Page: React.FC = () => {
 
   const handleSignOut = () => {};
 
-  const handleDestinationPress = ({
-    latitude,
-    longitude,
-    address,
-  }: {
+  const handleDestinationPress = (location: {
     latitude: number;
     longitude: number;
     address: string;
   }) => {
-    console.log(latitude, longitude);
+    console.log(location);
+    setDestinationLocation(location);
+
+    router.push("/(root)/find-ride");
   };
 
   useEffect(() => {
