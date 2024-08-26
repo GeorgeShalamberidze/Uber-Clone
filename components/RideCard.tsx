@@ -49,7 +49,7 @@ const RideCard: React.FC<{ rides: Ride }> = ({ rides }) => {
               Date & Time
             </Text>
             <Text className="text-md font-JakartaMedium text-gray-500">
-              {formatDate(created_at)}, {formatTime(ride_time)}
+              {formatDate(created_at)}, {formatTime(Number(ride_time))}
             </Text>
           </View>
 

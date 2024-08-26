@@ -30,6 +30,7 @@ const recentRides = [
     payment_status: "paid",
     driver_id: 2,
     user_id: "1",
+    user_email: "",
     created_at: "2024-08-12 05:19:20.620007",
     driver: {
       driver_id: "2",
@@ -56,6 +57,7 @@ const recentRides = [
     payment_status: "paid",
     driver_id: 1,
     user_id: "1",
+    user_email: "",
     created_at: "2024-08-12 06:12:17.683046",
     driver: {
       driver_id: "1",
@@ -82,6 +84,7 @@ const recentRides = [
     payment_status: "paid",
     driver_id: 1,
     user_id: "1",
+    user_email: "",
     created_at: "2024-08-12 08:49:01.809053",
     driver: {
       driver_id: "1",
@@ -134,7 +137,17 @@ const Page: React.FC = () => {
 
   const handleSignOut = () => {};
 
-  const handleDestinationPress = () => {};
+  const handleDestinationPress = ({
+    latitude,
+    longitude,
+    address,
+  }: {
+    latitude: number;
+    longitude: number;
+    address: string;
+  }) => {
+    console.log(latitude, longitude);
+  };
 
   useEffect(() => {
     const requestLocation = async () => {
