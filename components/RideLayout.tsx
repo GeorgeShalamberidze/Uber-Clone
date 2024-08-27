@@ -31,14 +31,12 @@ const RideLayout: React.FC<
             <Text className="text-xl font-JakartaSemiBold ml-5">
               {title || "Go Back"}
             </Text>
-
-            <Map />
           </View>
-
+          <Map />
           <BottomSheet
             keyboardBehavior="extend"
             ref={bottomSheetRef}
-            snapPoints={snapPoints || ["40%", "85%"]}
+            snapPoints={["10%", "40%", "85%"]}
             index={0}
           >
             <BottomSheetView style={{ flex: 1, padding: 20 }}>

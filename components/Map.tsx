@@ -72,6 +72,9 @@ const Map: React.FC = () => {
   });
 
   useEffect(() => {
+    // Remove TODO
+    setDrivers(drivers);
+
     if (Array.isArray(drivers)) {
       if (!userLatitude || !userLongitude) return;
 
