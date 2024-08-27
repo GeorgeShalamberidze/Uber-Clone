@@ -44,8 +44,7 @@ const Map: React.FC = () => {
 
       setMarkers(newMarkers);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [drivers]);
+  }, [drivers, userLatitude, userLongitude]);
 
   useEffect(() => {
     if (markers.length > 0 && destinationLatitude && destinationLongitude) {
@@ -59,15 +58,23 @@ const Map: React.FC = () => {
         setDrivers(drivers as MarkerData[]);
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [markers, destinationLatitude, destinationLongitude]);
+  }, [
+    markers,
+    destinationLatitude,
+    destinationLongitude,
+    userLatitude,
+    userLongitude,
+    setDrivers,
+  ]);
 
-  if (loading || !userLatitude || !userLongitude)
+  if (loading || (!userLatitude && !userLongitude)) {
+    console.log(loading, userLatitude, userLongitude);
     return (
       <View className="flex justify-between items-center w-full">
         <ActivityIndicator size="large" color="#000000" />
       </View>
     );
+  }
 
   if (error) {
     return (
@@ -99,8 +106,22 @@ const Map: React.FC = () => {
           image={
             selectedDriver === marker.id ? icons.selectedMarker : icons.marker
           }
-        ></Marker>
+        />
       ))}
+
+      {destinationLatitude && destinationLongitude && (
+        <>
+          <Marker
+            key="destination"
+            coordinate={{
+              latitude: destinationLatitude,
+              longitude: destinationLongitude,
+            }}
+            title="Destination"
+            image={icons.pin}
+          />
+        </>
+      )}
     </MapView>
   );
 };

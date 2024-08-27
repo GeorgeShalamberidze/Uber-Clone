@@ -143,7 +143,6 @@ const Page: React.FC = () => {
     longitude: number;
     address: string;
   }) => {
-    console.log(location);
     setDestinationLocation(location);
 
     router.push("/(root)/find-ride");
@@ -151,7 +150,10 @@ const Page: React.FC = () => {
 
   useEffect(() => {
     const requestLocation = async () => {
-      let { status } = await Location.getForegroundPermissionsAsync();
+      // let { status } = await Location.getForegroundPermissionsAsync();
+      let { status } = await Location.requestForegroundPermissionsAsync();
+
+      console.log("status", status);
 
       if (status !== "granted") {
         setHasPermission(false);
