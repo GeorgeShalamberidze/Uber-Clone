@@ -5,9 +5,9 @@ import RideLayout from "@/components/RideLayout";
 import { icons } from "@/constants";
 import { useDriverStore, useLocationStore } from "@/store";
 import { formatTime } from "@/utils/formatDate";
-import Payment from "@/components/Payment";
 
 import { StripeProvider } from "@stripe/stripe-react-native";
+import Payment from "@/components/Payment";
 
 const BookRide = () => {
   const { user } = useUser();
@@ -65,7 +65,7 @@ const BookRide = () => {
             <View className="flex flex-row items-center justify-between w-full border-b border-white py-3">
               <Text className="text-lg font-JakartaRegular">Pickup Time</Text>
               <Text className="text-lg font-JakartaRegular">
-                {formatTime(driverDetails?.time! || 5)}
+                {formatTime(parseInt(`${driverDetails?.time!}`) || 5)}
               </Text>
             </View>
 
@@ -92,7 +92,13 @@ const BookRide = () => {
             </View>
           </View>
 
-          <Payment />
+          <Payment
+            fullName={user?.fullName!}
+            email={user?.emailAddresses[0].emailAddress!}
+            amount={driverDetails?.price!}
+            driverId={driverDetails?.id}
+            rideTime={driverDetails?.time!}
+          />
         </>
       </RideLayout>
     </StripeProvider>
