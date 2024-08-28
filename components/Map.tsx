@@ -69,7 +69,6 @@ const Map: React.FC = () => {
   ]);
 
   if (loading || (!userLatitude && !userLongitude)) {
-    console.log(loading, userLatitude, userLongitude);
     return (
       <View className="flex justify-between items-center w-full">
         <ActivityIndicator size="large" color="#000000" />

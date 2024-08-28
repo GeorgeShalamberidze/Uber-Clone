@@ -36,7 +36,7 @@ const RideLayout: React.FC<
           <BottomSheet
             keyboardBehavior="extend"
             ref={bottomSheetRef}
-            snapPoints={["10%", "40%", "85%"]}
+            snapPoints={snapPoints || ["10%", "40%", "85%"]}
             index={0}
           >
             <BottomSheetView style={{ flex: 1, padding: 20 }}>
